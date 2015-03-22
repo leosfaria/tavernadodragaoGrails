@@ -7,7 +7,55 @@
 * You're free to add application-wide styles to this file and they'll appear at the top of the
 * compiled file, but it's generally better to create a new file per style scope.
 *
-*= require main
-*= require mobile
 *= require_self
 */
+
+/*----------- Login Page --------------- */
+.login, .signUp {
+    width: 50%;
+    margin: 20px auto;
+}
+
+.login .loginForm {
+    height: 40px;
+}
+
+.login .loginForm label {
+    margin-top: 13px;
+}
+
+.login .submitButton {
+    margin-left: 20px;
+}
+
+/*----------- Home Page --------------- */
+.homeLeft {
+    width: 10%;
+    margin-left: 5px;
+    float: left;
+}
+
+.homeLeft img {
+    width: 75px;
+    height: 75px;
+    border: 1px solid;
+    margin: 5px;
+}
+
+.homeMiddle {
+    width: 60%;
+    float: left;
+}
+
+.homeRight {
+    width: 25%;
+    float: left;
+}
+
+.homeMenuSearch {
+    padding: 15px;
+}
+
+.homeMenuSearch input {
+    width: 240px;
+}

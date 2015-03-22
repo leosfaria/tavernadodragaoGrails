@@ -17,7 +17,7 @@
         ${error.defaultMessage}<br>
     </g:each>
 </div>
-<div style="width: 50%; margin: 0 auto;">
+<div class="signUp">
     <g:form action="save" class="form-horizontal">
         <fieldset>
             <legend>Sign Up</legend>
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-4">
-                    <input type="button" class="btn btn-default" value="Cancel" onclick="window.location='/TavernaDoDragao/user/login';" />
+                    <input type="button" class="btn btn-default" value="Cancel" onclick="window.location='/tavernadodragaoGrails/user/login';" />
                     <g:submitButton name="submit" value="Save" class="btn btn-primary" />
                 </div>
             </div>
