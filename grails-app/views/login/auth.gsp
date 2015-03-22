@@ -18,18 +18,18 @@
 </g:if>
 <div class="login">
     <div>
-        <g:form action="${createLink(uri: '/j_spring_security_check')}">
+        <form action="${postUrl}" method="POST">
             <fieldset>
                 <div class="form-group loginForm">
                     <label for="username" class="col-lg-2 control-label">Username</label>
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                        <input type="text" class="form-control" id="username" name="j_username" placeholder="Username">
                     </div>
                 </div>
                 <div class="form-group loginForm">
                     <label for="password" class="col-lg-2 control-label">Password</label>
                     <div class="col-lg-4">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="j_password" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </fieldset>
-        </g:form>
+        </form>
     </div>
 </div>
 </body>

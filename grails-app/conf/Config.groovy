@@ -124,15 +124,20 @@ log4j.main = {
             'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
             'org.springframework',
             'org.hibernate',
-            'net.sf.ehcache.hibernate'
+            'net.sf.ehcache.hibernate',
+            'grails.plugin.springsecurity'
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'tavernadodragao.User'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'tavernadodragaograils.User'
+grails.plugin.springsecurity.authority.className = 'tavernadodragaograils.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        '/'                             : ['permitAll'],
-        '/user/**'                      : ['permitAll'],
-        '/bootstrap/**'                 : ['permitAll'],
-        '/home'                         : ['permitAll'],
-        '/assets/**'                    : ['permitAll']
+	'/':                              ['isFullyAuthenticated()'],
+    '/home':                          ['isFullyAuthenticated()'],
+	'/assets/**':                     ['permitAll'],
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll']
 ]
+
