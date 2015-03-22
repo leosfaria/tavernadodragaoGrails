@@ -18,23 +18,13 @@
                     <li id="menuCharacters" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="menuCharLink" aria-expanded="false">Characters <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="themes">
-                            <li><a href="../default/">Default</a></li>
+                            <li><a href="../default/">New Character</a></li>
                             <li class="divider"></li>
-                            <li><a href="../cerulean/">Cerulean</a></li>
                             <li><a href="../cosmo/">Cosmo</a></li>
                             <li><a href="../cyborg/">Cyborg</a></li>
-                            <li><a href="../darkly/">Darkly</a></li>
-                            <li><a href="../flatly/">Flatly</a></li>
-                            <li><a href="../journal/">Journal</a></li>
                             <li><a href="../lumen/">Lumen</a></li>
-                            <li><a href="../paper/">Paper</a></li>
-                            <li><a href="../readable/">Readable</a></li>
                             <li><a href="../sandstone/">Sandstone</a></li>
-                            <li><a href="../simplex/">Simplex</a></li>
-                            <li><a href="../slate/">Slate</a></li>
-                            <li><a href="../spacelab/">Spacelab</a></li>
                             <li><a href="../superhero/">Superhero</a></li>
-                            <li><a href="../united/">United</a></li>
                             <li><a href="../yeti/">Yeti</a></li>
                         </ul>
                     </li>
