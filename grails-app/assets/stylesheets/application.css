@@ -59,3 +59,18 @@
 .homeMenuSearch input {
     width: 240px;
 }
+
+.navbar .container .navbar-collapse label {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 500;
+    color: #98978b;
+    margin-left: 20px;
+    margin-top: 17px;
+}
+
+.navbar .container .navbar-collapse .authNavbarImput {
+    width: 15%;
+    display: inline;
+    margin-left: 10px;
+}

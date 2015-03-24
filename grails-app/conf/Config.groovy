@@ -131,9 +131,14 @@ log4j.main = {
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'tavernadodragaograils.User'
 grails.plugin.springsecurity.authority.className = 'tavernadodragaograils.Role'
+grails.plugin.springsecurity.userLookup.usernamePropertyName = 'email'
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['isFullyAuthenticated()'],
     '/home':                          ['isFullyAuthenticated()'],
+    '/user/home':                     ['isFullyAuthenticated()'],
+    '/user/save':                     ['permitAll'],
+    '/login/**':                      ['permitAll'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],

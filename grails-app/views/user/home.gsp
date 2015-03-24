@@ -33,6 +33,9 @@
                             <input type="text" id="query" name="query" placeholder="Busca">
                         </g:form>
                     </li>
+                    <li>
+                        <g:link controller='logout'>Logout</g:link>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -41,7 +44,7 @@
     <!------------  Home    ------------->
     <div class="homeLeft">
         <g:img file="yourImageDefault.jpg" />
-        <label>Leonardo Da Vinci</label>
+        <label>${userInstance?.username}</label>
     </div>
     <div class="homeMiddle">
         <label>Recent Activity</label>

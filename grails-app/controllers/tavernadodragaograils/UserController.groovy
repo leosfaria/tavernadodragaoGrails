@@ -1,13 +1,10 @@
 package tavernadodragaograils
 
 class UserController {
+    def springSecurityService
 
-    def login() {
-        render view: 'login'
-    }
-
-    def signUp() {
-        render view: 'create'
+    def home() {
+        render view: 'home', model: [userInstance: springSecurityService.currentUser]
     }
 
     def save() {
@@ -20,16 +17,16 @@ class UserController {
             user.validate()
 
             if(!user.hasErrors()) {
-                user.save(flush: true)
+                user.save(flush: true, failOnError: true)
 
-                render view: 'login'
+                render view: 'home'
 
                 flash.message = 'User saved!'
                 return
             }
 
 
-            render view: 'create', model: [userInstance: user]
+            render view: '/login/auth', model: [userInstance: user]
         }
     }
 }
