@@ -29,6 +29,12 @@
 }
 
 /*----------- Home Page --------------- */
+.error {
+    color: #ff0000;
+    width: 50%;
+    margin: 20px auto;
+}
+
 .homeLeft {
     width: 10%;
     margin-left: 5px;

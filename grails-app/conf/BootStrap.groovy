@@ -19,6 +19,7 @@ class BootStrap {
                 if (!admin.id) {
                     admin.email = "admin@admin.com.br"
                     admin.password = "admin"
+                    admin.confirmPassword = "admin"
                     admin.save(flush: true, failOnError: true)
                 }
             }

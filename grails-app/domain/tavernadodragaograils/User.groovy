@@ -17,7 +17,7 @@ class User {
 
     static constraints = {
         username blank: false
-        email blank: false
+        email blank: false, unique: true
         password blank: false, minSize: 3
     }
 
