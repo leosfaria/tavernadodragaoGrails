@@ -33,7 +33,9 @@
 <!------------  End Menu ------------->
 <g:if test="${flash.messageType == 'error'}">
     <div class="error">
-        ${flash.message}
+        <g:each in="${flash.message.split(';')}" var="messageCode">
+            <g:message code="${messageCode}" locale="pt_BR" /><br>
+        </g:each>
     </div>
 </g:if>
 <div class="signUp">
