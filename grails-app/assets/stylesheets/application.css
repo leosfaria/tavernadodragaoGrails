@@ -48,6 +48,10 @@
     margin: 5px;
 }
 
+.homeLeft label {
+    margin-left: 5px;
+}
+
 .homeMiddle {
     width: 60%;
     float: left;

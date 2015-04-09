@@ -27,7 +27,7 @@ class UserController {
                 flash.messageType = 'error'
             } else {
                 user.save(flush: true, failOnError: true)
-
+                springSecurityService.reauthenticate(user.username, user.password)
                 home()
                 return
             }

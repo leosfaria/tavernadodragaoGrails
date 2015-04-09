@@ -43,8 +43,12 @@
     <!------------  End Menu ------------->
     <!------------  Home    ------------->
     <div class="homeLeft">
-        <g:img file="yourImageDefault.jpg" />
-        <label>${userInstance?.username}</label>
+        <div>
+            <g:img file="yourImageDefault.jpg" />
+        </div>
+        <div>
+            <label>${userInstance?.username}</label>
+        </div>
     </div>
     <div class="homeMiddle">
         <label>Recent Activity</label>

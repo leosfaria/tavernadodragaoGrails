@@ -3,13 +3,9 @@
  */
 
 $(function() {
-    $('#menuCharacters').on('mouseenter', function() {
-        console.log('oi');
+    $('#menuCharacters').hover(function() {
         $(this).addClass("open");
-    });
-
-    $('#menuCharacters').on('mouseout', function() {
-        console.log('tchau');
+    }, function() {
         $(this).removeClass("open");
     });
 });
