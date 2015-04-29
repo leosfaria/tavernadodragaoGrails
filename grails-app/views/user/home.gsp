@@ -11,7 +11,7 @@
     <div class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <a href="/" class="navbar-brand">Taverna do Dragao</a>
+                <g:link action="home" class="navbar-brand">Taverna do Dragao</g:link>
             </div>
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
@@ -44,17 +44,22 @@
     <!------------  Home    ------------->
     <div class="homeLeft">
         <div>
-            <g:img file="yourImageDefault.jpg" />
+            <g:link action="edit" class="colorBlack">
+                <g:img file="yourImageDefault.jpg" />
+            </g:link>
         </div>
         <div>
-            <label>${userInstance?.username}</label>
+            <g:link action="edit" class="colorBlack">
+                <label>${userInstance?.username}</label>
+            </g:link>
         </div>
     </div>
     <div class="homeMiddle">
         <label>Recent Activity</label>
     </div>
     <div class="homeRight">
-        <label>Party</label>
+        <label>Party</label><br/>
+        <label>Table</label>
     </div>
 </div>
 </body>

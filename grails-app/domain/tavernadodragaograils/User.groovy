@@ -9,6 +9,8 @@ class User {
     String password
     String confirmPassword
 
+    String image
+
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
@@ -19,6 +21,7 @@ class User {
         username blank: false
         email blank: false, unique: true
         password blank: false, minSize: 3
+        image nullable: true
     }
 
     Set<Role> getAuthorities() {

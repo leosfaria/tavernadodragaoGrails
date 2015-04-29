@@ -35,6 +35,16 @@
     margin: 20px auto;
 }
 
+.success {
+    color: #00ff00;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.colorBlack {
+    color: #3e3f3a;
+}
+
 .homeLeft {
     width: 10%;
     margin-left: 5px;

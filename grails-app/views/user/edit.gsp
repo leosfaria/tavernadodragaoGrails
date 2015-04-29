@@ -1,0 +1,101 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Leonardo
+  Date: 11/04/2015
+  Time: 19:29
+--%>
+
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+    <meta name="layout" content="main"/>
+    <title>Taverna</title>
+    <!--asset:javascript src="home.js"/-->
+</head>
+<body>
+<div>
+    <!------------  Menu    ------------->
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <g:link action="home" class="navbar-brand">Taverna do Dragao</g:link>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li>
+
+                    </li>
+                    <li>
+
+                    </li>
+                    <li>
+                        <g:link controller='logout'>Logout</g:link>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!------------  End Menu ------------->
+    <!------------  Home    ------------->
+    <div class="homeLeft">
+        <div>
+            <g:img file="${userInstance?.image?userInstance.image:'yourImageDefault.jpg'}" />
+        </div>
+        <div>
+            <label>${userInstance?.username}</label>
+        </div>
+    </div>
+    <div class="homeMiddle">
+        <g:if test="${flash.messageType != null}">
+            <div class="${flash.messageType}">
+                <g:each in="${flash.message.split(';')}" var="messageCode">
+                    <g:message code="${messageCode}" locale="pt_BR" /><br>
+                </g:each>
+            </div>
+        </g:if>
+        <g:form controller="user" action="update" enctype="multipart/form-data" class="form-horizontal">
+            <fieldset>
+                <legend>Edit Profile</legend>
+                <div class="form-group">
+                    <label for="password" class="col-lg-3 control-label">Upload Photo:</label>
+                    <div class="col-lg-5">
+                        <input type="file" class="form-control" id="image" name="image" placeholder="Upload your photo" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="col-lg-3 control-label">Username:</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="${userInstance?.username}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-lg-3 control-label">Password:</label>
+                    <div class="col-lg-5">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword" class="col-lg-3 control-label">New Password:</label>
+                    <div class="col-lg-5">
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="New Password" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmNewPassword" class="col-lg-3 control-label">Confirm New Password:</label>
+                    <div class="col-lg-5">
+                        <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm New Password" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-6">
+                        <g:submitButton name="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            </fieldset>
+        </g:form>
+    </div>
+    <div class="homeRight">
+    </div>
+</div>
+</body>
+</html>

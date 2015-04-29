@@ -136,13 +136,14 @@ grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['isFullyAuthenticated()'],
     '/home':                          ['isFullyAuthenticated()'],
-    '/user/home':                     ['isFullyAuthenticated()'],
+    '/user/*':                        ['isFullyAuthenticated()'],
     '/user/save':                     ['permitAll'],
     '/login/**':                      ['permitAll'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
+	'/**/favicon.ico':                ['permitAll'],
+    '/userData/**':                   ['permitAll']
 ]
 
