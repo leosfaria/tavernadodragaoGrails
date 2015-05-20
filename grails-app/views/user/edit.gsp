@@ -39,7 +39,7 @@
     <!------------  Home    ------------->
     <div class="homeLeft">
         <div>
-            <g:img file="${userInstance?.image?userInstance.image:'yourImageDefault.jpg'}" />
+            <img src="${createLink(controller: 'user', action: 'imageAvatar', params: [id: userInstance?.id])}" />
         </div>
         <div>
             <label>${userInstance?.username}</label>

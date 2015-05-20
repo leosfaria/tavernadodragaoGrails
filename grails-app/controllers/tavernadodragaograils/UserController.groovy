@@ -1,5 +1,9 @@
 package tavernadodragaograils
 
+import org.apache.commons.fileupload.disk.DiskFileItem
+import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.multipart.commons.CommonsMultipartFile
+
 class UserController {
     def springSecurityService
     def passwordEncoder
@@ -64,11 +68,10 @@ class UserController {
         if(params.image.size != 0) {
             def externalPath = "c:/Leo/Projects/Taverna/tavernadodragaoGrails/userData/avatar/"
 
-            def file = new File(externalPath + user.id + "/" + params.image.fileItem.fileName)
+            def file = request.getFile('image')
 
-            file.mkdirs()
-            user.image = "userData/avatar/" + user.id + "/" + file.name
-            params.image.transferTo(file)
+            user.image = file.bytes.encodeBase64().toString()
+            user.contentType = file.contentType
         }
 
         if(flash.messageType != "error") {
@@ -79,5 +82,24 @@ class UserController {
         }
 
         render view: 'edit', model: [userInstance: user]
+    }
+
+    def imageAvatar() {
+        User user = User.get(params.id)
+        def contentType = ""
+        def image = ""
+
+        if(user.contentType) {
+            contentType = user.contentType
+            image = user.image
+        } else {
+            File defaultImg = new File("grails-app/assets/images/yourImageDefault.jpg");
+
+            contentType = "image/jpg"
+            image = defaultImg.bytes.encodeBase64().toString()
+        }
+
+        response.setContentType(contentType)
+        response.getOutputStream().write(image.decodeBase64())
     }
 }

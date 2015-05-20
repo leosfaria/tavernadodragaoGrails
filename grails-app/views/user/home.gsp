@@ -45,7 +45,7 @@
     <div class="homeLeft">
         <div>
             <g:link action="edit" class="colorBlack">
-                <g:img file="yourImageDefault.jpg" />
+                <img src="${createLink(controller: 'user', action: 'imageAvatar', params: [id: userInstance?.id])}" />
             </g:link>
         </div>
         <div>

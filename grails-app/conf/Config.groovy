@@ -128,6 +128,17 @@ log4j.main = {
             'grails.plugin.springsecurity'
 }
 
+//MongoDb
+grails {
+    mongo {
+        host = "localhost"
+        port = 27017
+        username = ""
+        password = ""
+        databaseName = "Taverna"
+    }
+}
+
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'tavernadodragaograils.User'
 grails.plugin.springsecurity.authority.className = 'tavernadodragaograils.Role'

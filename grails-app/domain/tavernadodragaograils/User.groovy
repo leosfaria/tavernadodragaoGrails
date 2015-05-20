@@ -1,8 +1,12 @@
 package tavernadodragaograils
 
+import javassist.bytecode.ByteArray
+
 class User {
 
     transient springSecurityService
+
+    String id
 
     String username
     String email
@@ -10,6 +14,7 @@ class User {
     String confirmPassword
 
     String image
+    String contentType
 
     boolean enabled = true
     boolean accountExpired
@@ -22,6 +27,7 @@ class User {
         email blank: false, unique: true
         password blank: false, minSize: 3
         image nullable: true
+        contentType nullable: true
     }
 
     Set<Role> getAuthorities() {
