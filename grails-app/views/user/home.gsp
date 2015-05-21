@@ -43,16 +43,7 @@
     <!------------  End Menu ------------->
     <!------------  Home    ------------->
     <div class="homeLeft">
-        <div>
-            <g:link action="edit" class="colorBlack">
-                <img src="${createLink(controller: 'user', action: 'imageAvatar', params: [id: userInstance?.id])}" />
-            </g:link>
-        </div>
-        <div>
-            <g:link action="edit" class="colorBlack">
-                <label>${userInstance?.username}</label>
-            </g:link>
-        </div>
+        <g:render template="avatar" model="[userInstance: userInstance]"/>
     </div>
     <div class="homeMiddle">
         <label>Recent Activity</label>

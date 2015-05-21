@@ -38,12 +38,7 @@
     <!------------  End Menu ------------->
     <!------------  Home    ------------->
     <div class="homeLeft">
-        <div>
-            <img src="${createLink(controller: 'user', action: 'imageAvatar', params: [id: userInstance?.id])}" />
-        </div>
-        <div>
-            <label>${userInstance?.username}</label>
-        </div>
+        <g:render template="avatar" model="[userInstance: userInstance]"/>
     </div>
     <div class="homeMiddle">
         <g:if test="${flash.messageType != null}">
