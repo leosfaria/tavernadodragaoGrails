@@ -39,9 +39,15 @@
     </div>
 </g:if>
 <div class="signUp">
-    <g:form controller="user" action="save" class="form-horizontal">
+    <g:form controller="user" action="save" enctype="multipart/form-data" class="form-horizontal">
         <fieldset>
             <legend>Sign Up</legend>
+            <div class="form-group">
+                <label for="password" class="col-lg-3 control-label">Upload Photo:</label>
+                <div class="col-lg-5">
+                    <input type="file" class="form-control" id="imageFile" name="imageFile" placeholder="Upload your photo" value="">
+                </div>
+            </div>
             <div class="form-group">
                 <label for="username" class="col-lg-3 control-label">Username</label>
                 <div class="col-lg-5">

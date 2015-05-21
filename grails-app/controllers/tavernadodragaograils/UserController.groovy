@@ -14,34 +14,37 @@ class UserController {
     }
 
     def save() {
-        User user = new User(params.id)
+        User user = new User(params)
 
-        if(!user.id) {
-            user.properties = params
+        user.validate()
+        if(user.hasErrors()) {
+            flash.message = ""
+            for(fieldError in user.errors.fieldErrors) {
+                flash.message += fieldError.codes[3] + ";"
+            }
+            flash.messageType = 'error'
+        } else if(user.password != params.confirmPassword) {
+            flash.message = g.message(code: "tavernadodragaograils.User.confirmPassword.validator.error")
+            flash.messageType = 'error'
+        } else {
+            if(params.imageFile.size != 0) {
+                def file = request.getFile('imageFile')
 
-            user.validate()
-            if(user.hasErrors()) {
-                flash.message = ""
-                for(fieldError in user.errors.fieldErrors) {
-                    flash.message += fieldError.codes[3] + ";"
-                }
-                flash.messageType = 'error'
-            } else if(user.password != params.confirmPassword) {
-                flash.message = g.message(code: "tavernadodragaograils.User.confirmPassword.validator.error")
-                flash.messageType = 'error'
-            } else {
-                user.save(flush: true, failOnError: true)
-                springSecurityService.reauthenticate(user.username, user.password)
-                home()
-                return
+                user.image = file.bytes.encodeBase64().toString()
+                user.contentType = file.contentType
             }
 
-            def config = SpringSecurityUtils.securityConfig
-            String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
-
-            render view: '/login/auth', model: [postUrl: postUrl, rememberMeParameter: config.rememberMe.parameter,
-                                                userInstance: user]
+            user.save(flush: true, failOnError: true)
+            springSecurityService.reauthenticate(user.username, user.password)
+            home()
+            return
         }
+
+        def config = SpringSecurityUtils.securityConfig
+        String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
+
+        render view: '/login/auth', model: [postUrl: postUrl, rememberMeParameter: config.rememberMe.parameter,
+                                            userInstance: user]
     }
 
     def edit(){
@@ -60,8 +63,6 @@ class UserController {
         }
 
         if(params.image.size != 0) {
-            def externalPath = "c:/Leo/Projects/Taverna/tavernadodragaoGrails/userData/avatar/"
-
             def file = request.getFile('image')
 
             user.image = file.bytes.encodeBase64().toString()
