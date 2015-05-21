@@ -1,5 +1,6 @@
 package tavernadodragaograils
 
+import grails.plugin.springsecurity.SpringSecurityUtils
 import org.apache.commons.fileupload.disk.DiskFileItem
 import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.multipart.commons.CommonsMultipartFile
@@ -35,7 +36,11 @@ class UserController {
                 return
             }
 
-            render view: '/login/auth', model: [userInstance: user]
+            def config = SpringSecurityUtils.securityConfig
+            String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
+
+            render view: '/login/auth', model: [postUrl: postUrl, rememberMeParameter: config.rememberMe.parameter,
+                                                userInstance: user]
         }
     }
 
@@ -46,19 +51,8 @@ class UserController {
     def update() {
         User user = springSecurityService.currentUser
 
-        if(params.password != null && !params.password.isEmpty()) {
-            if(!passwordEncoder.isPasswordValid(user.password, params.password, null)) {
-                flash.message = g.message(code: "tavernadodragaograils.User.update.password.error")
-                flash.messageType = "error"
-            } else if (params.newPassword != params.confirmNewPassword) {
-                flash.message = g.message(code: "tavernadodragaograils.User.confirmPassword.validator.error")
-                flash.messageType = 'error'
-            } else if(params.newPassword == null || params.newPassword.isEmpty()){
-                flash.message = g.message(code: "tavernadodragaograils.User.update.newpassword.nullable.error")
-                flash.messageType = "error"
-            } else {
-                user.password = params.newPassword
-            }
+        if(params.password != null && !params.password.isEmpty() && isUserNewPasswordValid(user)) {
+            user.password = params.newPassword
         }
 
         if(params.username != null && !params.username.isEmpty()) {
@@ -101,5 +95,23 @@ class UserController {
 
         response.setContentType(contentType)
         response.getOutputStream().write(image.decodeBase64())
+    }
+
+    Boolean isUserNewPasswordValid(User loggedUser) {
+        if(!passwordEncoder.isPasswordValid(loggedUser.password, params.password, null)) {
+            flash.message = g.message(code: "tavernadodragaograils.User.update.password.error")
+            flash.messageType = "error"
+        } else if (params.newPassword != params.confirmNewPassword) {
+            flash.message = g.message(code: "tavernadodragaograils.User.confirmPassword.validator.error")
+            flash.messageType = 'error'
+        } else if(params.newPassword == null || params.newPassword.isEmpty()) {
+            flash.message = g.message(code: "tavernadodragaograils.User.update.newpassword.nullable.error")
+            flash.messageType = "error"
+        } else if(params.newPassword.size() < 3) {
+            flash.message = g.message(code: "tavernadodragaograils.User.password.minSize.error")
+            flash.messageType = "error"
+        }
+
+        return flash.messageType != "error"
     }
 }
