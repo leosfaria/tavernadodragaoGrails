@@ -38,7 +38,7 @@
     <!------------  End Menu ------------->
     <!------------  Home    ------------->
     <div class="homeLeft">
-        <g:render template="avatar" model="[userInstance: userInstance]"/>
+        <g:render template="avatar" model="[userInstance: userInstance, action: 'home']"/>
     </div>
     <div class="homeMiddle">
         <g:if test="${flash.messageType != null}">
@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label for="password" class="col-lg-3 control-label">Upload Photo:</label>
                     <div class="col-lg-5">
-                        <input type="file" class="form-control" id="image" name="image" placeholder="Upload your photo" value="">
+                        <input type="file" class="form-control" id="imageFile" name="imageFile" placeholder="Upload your photo" value="">
                     </div>
                 </div>
                 <div class="form-group">

@@ -27,17 +27,16 @@ class UserController {
             flash.message = g.message(code: "tavernadodragaograils.User.confirmPassword.validator.error")
             flash.messageType = 'error'
         } else {
-            if(params.imageFile.size != 0) {
-                def file = request.getFile('imageFile')
-
-                user.image = file.bytes.encodeBase64().toString()
-                user.contentType = file.contentType
+            if(params.imageFile != null && params.imageFile.size != 0) {
+                setUserImage(user)
             }
 
-            user.save(flush: true, failOnError: true)
-            springSecurityService.reauthenticate(user.username, user.password)
-            home()
-            return
+            if(flash.messageType != 'error') {
+                user.save(flush: true, failOnError: true)
+                springSecurityService.reauthenticate(user.username, user.password)
+                home()
+                return
+            }
         }
 
         def config = SpringSecurityUtils.securityConfig
@@ -53,6 +52,7 @@ class UserController {
 
     def update() {
         User user = springSecurityService.currentUser
+        User oldUser = new User(username: user.username, password: user.password, image: user.image)
 
         if(params.password != null && !params.password.isEmpty() && isUserNewPasswordValid(user)) {
             user.password = params.newPassword
@@ -62,14 +62,11 @@ class UserController {
             user.username = params.username
         }
 
-        if(params.image.size != 0) {
-            def file = request.getFile('image')
-
-            user.image = file.bytes.encodeBase64().toString()
-            user.contentType = file.contentType
+        if(params.imageFile != null && params.imageFile.size != 0) {
+            setUserImage(user)
         }
 
-        if(flash.messageType != "error") {
+        if(flash.messageType != "error" && isUserChanged(user, oldUser)) {
             user.save(flush: true, failOnError: true)
 
             flash.message = g.message(code: "tavernadodragaograils.User.update.success")
@@ -98,6 +95,19 @@ class UserController {
         response.getOutputStream().write(image.decodeBase64())
     }
 
+    void setUserImage(User user) {
+        CommonsMultipartFile file = request.getFile('imageFile')
+
+        if(file.size > 5000000) {
+            flash.message = g.message(code: "tavernadodragaograils.User.image.size.error")
+            flash.messageType = 'error'
+            return
+        }
+
+        user.image = file.bytes.encodeBase64().toString()
+        user.contentType = file.contentType
+    }
+
     Boolean isUserNewPasswordValid(User loggedUser) {
         if(!passwordEncoder.isPasswordValid(loggedUser.password, params.password, null)) {
             flash.message = g.message(code: "tavernadodragaograils.User.update.password.error")
@@ -114,5 +124,9 @@ class UserController {
         }
 
         return flash.messageType != "error"
+    }
+
+    Boolean isUserChanged(User newUser, User loggedUser) {
+        return newUser.username != loggedUser.username || newUser.password != loggedUser.password || newUser.image != loggedUser.image
     }
 }

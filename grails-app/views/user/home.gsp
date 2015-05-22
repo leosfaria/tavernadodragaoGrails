@@ -43,7 +43,7 @@
     <!------------  End Menu ------------->
     <!------------  Home    ------------->
     <div class="homeLeft">
-        <g:render template="avatar" model="[userInstance: userInstance]"/>
+        <g:render template="avatar" model="[userInstance: userInstance, action: 'edit']"/>
     </div>
     <div class="homeMiddle">
         <label>Recent Activity</label>
