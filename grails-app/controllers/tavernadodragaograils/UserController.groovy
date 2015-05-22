@@ -1,8 +1,9 @@
 package tavernadodragaograils
 
 import grails.plugin.springsecurity.SpringSecurityUtils
-import org.apache.commons.fileupload.disk.DiskFileItem
-import org.springframework.web.multipart.MultipartFile
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 class UserController {
@@ -33,7 +34,11 @@ class UserController {
 
             if(flash.messageType != 'error') {
                 user.save(flush: true, failOnError: true)
-                springSecurityService.reauthenticate(user.username, user.password)
+
+                //Login in
+                Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthoritiesGranted())
+                SecurityContextHolder.getContext().setAuthentication(auth)
+
                 home()
                 return
             }
@@ -74,6 +79,23 @@ class UserController {
         }
 
         render view: 'edit', model: [userInstance: user]
+    }
+
+    def addFriend() {
+        User user = User.get(params.id)
+        User userLogged = springSecurityService.currentUser
+
+        if(!userLogged.friends) {
+            userLogged.friends = []
+        }
+
+        userLogged.friends << user
+        userLogged.save(flush: true, failOnError: true)
+        home()
+    }
+
+    def acceptFriend() {
+
     }
 
     def imageAvatar() {

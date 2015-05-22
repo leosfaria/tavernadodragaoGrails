@@ -29,9 +29,7 @@
                         </ul>
                     </li>
                     <li class="homeMenuSearch">
-                        <g:form controller="search" action="search">
-                            <input type="text" id="query" name="query" placeholder="Busca">
-                        </g:form>
+                        <input type="text" id="search" name="search" placeholder="Busca">
                     </li>
                     <li>
                         <g:link controller='logout'>Logout</g:link>
