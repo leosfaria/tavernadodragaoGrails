@@ -48,6 +48,9 @@
     </div>
     <div class="homeRight">
         <label>Party</label><br/>
+        <g:each in="${userInstance.friends}" var="friend">
+            <g:render template="friend" model="[userInstance: friend]"/>
+        </g:each>
         <label>Table</label>
     </div>
 </div>

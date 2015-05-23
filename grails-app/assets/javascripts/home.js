@@ -12,7 +12,7 @@ $(function() {
     $( "#search" ).autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "http://localhost:8080/tavernadodragaoGrails/search/search",
+                url: "search/search",
                 dataType: "json",
                 data: {
                     q: request.term
@@ -29,11 +29,15 @@ $(function() {
             "Nothing selected, input was " + this.value);
         }
     }).data("ui-autocomplete")._renderItem = function (ul, item) {
-        return $("<li class='search'></li>")
+        var html = $("<li class='search'></li>")
             .data("item.autocomplete", item)
             .append("<img src='" + item.img + "'/>")
             .append("<a>" + item.label + "</a>")
-            .append("<a href='" + item.friend + "'>Add Friend</a>")
-            .appendTo(ul);
+
+        if(item.friend !== undefined) {
+            html.append("<a href='" + item.friend + "'>Add Friend</a>")
+        }
+
+        return html.appendTo(ul);
     };
 });

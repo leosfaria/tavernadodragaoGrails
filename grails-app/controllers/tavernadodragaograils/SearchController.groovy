@@ -17,10 +17,16 @@ class SearchController {
         }
 
         def users = query.list(max: 5, offset: 0).collect {
-            [id: it.id,
+            def map = [id: it.id,
              value: it.username,
-             img: createLink(controller: 'user', action: 'imageAvatar', params: [id: it.id]),
-             friend: createLink(controller: 'user', action: 'addFriend', params: [id: it.id])]
+             img: createLink(controller: 'user', action: 'imageAvatar', params: [id: it.id])
+            ]
+
+            if(!user.friends.contains(it)) {
+                map.put('friend', createLink(controller: 'user', action: 'addFriend', params: [id: it.id]))
+            }
+
+            map
         }
 
         render text: users as JSON

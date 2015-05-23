@@ -100,3 +100,10 @@
     height: 25px;
     margin: 5px;
 }
+
+.friend img {
+    width: 75px;
+    height: 75px;
+    border: 1px solid;
+    margin: 5px;
+}

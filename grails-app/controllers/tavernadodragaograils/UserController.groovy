@@ -38,7 +38,7 @@ class UserController {
                 //Login in
                 Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthoritiesGranted())
                 SecurityContextHolder.getContext().setAuthentication(auth)
-
+                
                 home()
                 return
             }
@@ -83,14 +83,23 @@ class UserController {
 
     def addFriend() {
         User user = User.get(params.id)
-        User userLogged = springSecurityService.currentUser
 
-        if(!userLogged.friends) {
-            userLogged.friends = []
+        if(user) {
+            User userLogged = springSecurityService.currentUser
+
+            if(!userLogged.friends) {
+                userLogged.friends = []
+            }
+
+            if(!userLogged.friends.contains(user)) {
+                userLogged.friends << user
+                userLogged.save(flush: true, failOnError: true)
+            }
+        } else {
+            flash.message = g.message(code: "tavernadodragaograils.User.not.found.error")
+            flash.messageType = 'error'
         }
 
-        userLogged.friends << user
-        userLogged.save(flush: true, failOnError: true)
         home()
     }
 
@@ -122,6 +131,12 @@ class UserController {
 
         if(file.size > 5000000) {
             flash.message = g.message(code: "tavernadodragaograils.User.image.size.error")
+            flash.messageType = 'error'
+            return
+        }
+
+        if(!file.contentType.contains("image")) {
+            flash.message = g.message(code: "tavernadodragaograils.User.image.format.error")
             flash.messageType = 'error'
             return
         }
