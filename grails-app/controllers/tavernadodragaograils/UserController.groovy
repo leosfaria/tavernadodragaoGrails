@@ -38,7 +38,7 @@ class UserController {
                 //Login in
                 Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthoritiesGranted())
                 SecurityContextHolder.getContext().setAuthentication(auth)
-                
+
                 home()
                 return
             }
@@ -87,13 +87,16 @@ class UserController {
         if(user) {
             User userLogged = springSecurityService.currentUser
 
-            if(!userLogged.friends) {
-                userLogged.friends = []
+            if(!user.friendRequests) {
+                user.friendRequests = []
             }
 
             if(!userLogged.friends.contains(user)) {
-                userLogged.friends << user
-                userLogged.save(flush: true, failOnError: true)
+                user.friendRequests << userLogged
+                user.save(flush: true, failOnError: true)
+
+                flash.message = g.message(code: "tavernadodragaograils.User.friend.request.send")
+                flash.messageType = 'success'
             }
         } else {
             flash.message = g.message(code: "tavernadodragaograils.User.not.found.error")
@@ -104,7 +107,36 @@ class UserController {
     }
 
     def acceptFriend() {
+        User user = User.get(params.id)
 
+        if(user) {
+            User userLogged = springSecurityService.currentUser
+
+            if(!userLogged.friends) {
+                userLogged.friends = []
+            }
+
+            if(!user.friends) {
+                user.friends = []
+            }
+
+            if(!userLogged.friends.contains(user)) {
+                user.friends << userLogged
+                user.save(flush: true, failOnError: true)
+
+                userLogged.friends << user
+                userLogged.friendRequests.remove(user)
+                userLogged.save(flush: true, failOnError: true)
+
+                flash.message = g.message(code: "tavernadodragaograils.User.friend.request.accept", args: [user.username])
+                flash.messageType = 'success'
+            }
+        } else {
+            flash.message = g.message(code: "tavernadodragaograils.User.not.found.error")
+            flash.messageType = 'error'
+        }
+
+        home()
     }
 
     def imageAvatar() {

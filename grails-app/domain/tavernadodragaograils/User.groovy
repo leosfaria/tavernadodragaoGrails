@@ -18,6 +18,7 @@ class User {
     String contentType
 
     List<User> friends = []
+    List<User> friendRequests = []
 
     boolean enabled = true
     boolean accountExpired
@@ -34,7 +35,7 @@ class User {
         friends nullable: true
     }
 
-    static hasMany = [ friends: User ]
+    static hasMany = [ friends: User, friendRequests: User ]
 
     Set<Role> getAuthorities() {
         return  [Role.ROLE_USER]

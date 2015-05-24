@@ -31,6 +31,26 @@
                     <li class="homeMenuSearch">
                         <input type="text" id="search" name="search" placeholder="Busca">
                     </li>
+                    <li id="news" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="newsLink" aria-expanded="false">News <span class="caret"></span></a>
+                        <ul class="dropdown-menu news" aria-labelledby="themes">
+                            <g:if test="${!userInstance.friendRequests?.isEmpty()}">
+                                <g:each in="${userInstance.friendRequests}" var="friend">
+                                    <li>
+                                        <img src="${createLink(controller: 'user', action: 'imageAvatar', params: [id: friend.id])}" />
+                                        <label>You receive a friend request!</label>
+                                        <label>${friend.username}</label>
+                                        <a href="${createLink(controller: 'user', action: 'acceptFriend', params: [id: friend.id])}">Accept</a>
+                                    </li>
+                                </g:each>
+                            </g:if>
+                            <g:else>
+                                <li>
+                                    <label>Nothing to show</label>
+                                </li>
+                            </g:else>
+                        </ul>
+                    </li>
                     <li>
                         <g:link controller='logout'>Logout</g:link>
                     </li>
@@ -44,6 +64,13 @@
         <g:render template="avatar" model="[userInstance: userInstance, action: 'edit']"/>
     </div>
     <div class="homeMiddle">
+        <g:if test="${flash.messageType != null}">
+            <div class="${flash.messageType}">
+                <g:each in="${flash.message.split(';')}" var="messageCode">
+                    <g:message code="${messageCode}" locale="pt_BR" /><br>
+                </g:each>
+            </div>
+        </g:if>
         <label>Recent Activity</label>
     </div>
     <div class="homeRight">

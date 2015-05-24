@@ -12,7 +12,7 @@ $(function() {
     $( "#search" ).autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "search/search",
+                url: "/tavernadodragaoGrails/search/search",
                 dataType: "json",
                 data: {
                     q: request.term

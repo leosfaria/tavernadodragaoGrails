@@ -22,6 +22,14 @@ class BootStrap {
                     admin.confirmPassword = "admin"
                     admin.save(flush: true, failOnError: true)
                 }
+
+                User test = User.findOrCreateByUsername("ragnarok")
+                if (!test.id) {
+                    test.email = "ragnarok@odin.com.br"
+                    test.password = "rag"
+                    test.confirmPassword = "rag"
+                    test.save(flush: true, failOnError: true)
+                }
             }
         }
     }
