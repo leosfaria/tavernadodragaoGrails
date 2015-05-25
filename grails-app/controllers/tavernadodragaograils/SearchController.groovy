@@ -22,8 +22,13 @@ class SearchController {
              img: createLink(controller: 'user', action: 'imageAvatar', params: [id: it.id])
             ]
 
-            if(!user.friends.contains(it)) {
-                map.put('friend', createLink(controller: 'user', action: 'addFriend', params: [id: it.id]))
+            if(user.friendRequests.contains(it)) {
+                map.put('friendAccept', createLink(controller: 'user', action: 'acceptFriend', params: [friendId: it.id]))
+                map.put('friendDecline', createLink(controller: 'user', action: 'declineFriend', params: [friendId: it.id]))
+            } else if(it.friendRequests.contains(user)) {
+                map.put('friendRequestSent', true)
+            } else if(!user.friends.contains(it)) {
+                map.put('friendAdd', createLink(controller: 'user', action: 'addFriend', params: [friendId: it.id]))
             }
 
             map

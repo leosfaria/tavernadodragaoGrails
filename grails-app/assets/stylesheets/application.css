@@ -108,8 +108,40 @@
     margin: 5px;
 }
 
+
+/*friend request*/
+#news .dropdown-menu {
+    min-width: 210px!important;
+}
 .news img {
     width: 40px;
     height: 40px;
     margin: 5px;
+    float: left;
+}
+
+h3.section-name {
+    font-size: 11px;
+    margin: 2px 10px 5px;
+}
+
+span.user-name {
+    display: block;
+    font-size: 11px;
+}
+
+.news li {
+    margin-bottom: 10px;
+    padding-top: 5px;
+    border-top: 1px solid #ccc;
+}
+.news li:first-child {
+    border-top: 1px solid #000important;
+}
+
+
+/*Autocomplete*/
+.ui-autocomplete .search .btn {
+    float: right;
+    margin: 8px 0;
 }

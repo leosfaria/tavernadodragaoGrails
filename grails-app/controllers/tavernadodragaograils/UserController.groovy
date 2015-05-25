@@ -82,7 +82,7 @@ class UserController {
     }
 
     def addFriend() {
-        User user = User.get(params.id)
+        User user = User.get(params.friendId)
 
         if(user) {
             User userLogged = springSecurityService.currentUser
@@ -107,7 +107,7 @@ class UserController {
     }
 
     def acceptFriend() {
-        User user = User.get(params.id)
+        User user = User.get(params.friendId)
 
         if(user) {
             User userLogged = springSecurityService.currentUser
@@ -131,6 +131,22 @@ class UserController {
                 flash.message = g.message(code: "tavernadodragaograils.User.friend.request.accept", args: [user.username])
                 flash.messageType = 'success'
             }
+        } else {
+            flash.message = g.message(code: "tavernadodragaograils.User.not.found.error")
+            flash.messageType = 'error'
+        }
+
+        home()
+    }
+
+    def declineFriend() {
+        User user = User.get(params.friendId)
+
+        if(user) {
+            User userLogged = springSecurityService.currentUser
+
+            userLogged.friendRequests.remove(user)
+            userLogged.save(flush: true, failOnError: true)
         } else {
             flash.message = g.message(code: "tavernadodragaograils.User.not.found.error")
             flash.messageType = 'error'

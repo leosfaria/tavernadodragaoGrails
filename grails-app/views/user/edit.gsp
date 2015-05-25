@@ -10,32 +10,11 @@
 <head>
     <meta name="layout" content="main"/>
     <title>Taverna</title>
-    <!--asset:javascript src="home.js"/-->
 </head>
 <body>
 <div>
-    <!------------  Menu    ------------->
-    <div class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <g:link action="home" class="navbar-brand">Taverna do Dragao</g:link>
-            </div>
-            <div class="navbar-collapse collapse" id="navbar-main">
-                <ul class="nav navbar-nav">
-                    <li>
+    <g:render template="../menu/menu" model="[userInstance: userInstance]" />
 
-                    </li>
-                    <li>
-
-                    </li>
-                    <li>
-                        <g:link controller='logout'>Logout</g:link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!------------  End Menu ------------->
     <!------------  Home    ------------->
     <div class="homeLeft">
         <g:render template="avatar" model="[userInstance: userInstance, action: 'home']"/>
