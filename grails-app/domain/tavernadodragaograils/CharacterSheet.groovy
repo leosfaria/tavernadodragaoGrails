@@ -6,12 +6,11 @@ class CharacterSheet {
 
     String name
 
-    List<CharacterImages> images = []
+    List<CharacterImage> images = []
 
     static embedded = ['images']
 
     static constraints = {
-        //images nullable: true
         name unique: true
     }
 }

@@ -1,6 +1,6 @@
 package tavernadodragaograils
 
-class CharacterImages {
+class CharacterImage {
 
     String image
     String contentType
