@@ -20,13 +20,8 @@
         <g:render template="avatar" model="[userInstance: userInstance, action: 'home']"/>
     </div>
     <div class="homeMiddle">
-        <g:if test="${flash.messageType != null}">
-            <div class="${flash.messageType}">
-                <g:each in="${flash.message.split(';')}" var="messageCode">
-                    <g:message code="${messageCode}" locale="pt_BR" /><br>
-                </g:each>
-            </div>
-        </g:if>
+        <g:render template="../systemMessage" />
+
         <g:form controller="user" action="update" enctype="multipart/form-data" class="form-horizontal">
             <fieldset>
                 <legend>Edit Profile</legend>

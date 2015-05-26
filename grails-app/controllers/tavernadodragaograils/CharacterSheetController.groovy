@@ -11,6 +11,7 @@ class CharacterSheetController {
     }
 
     def save() {
+        User user = springSecurityService.currentUser
         CharacterSheet sheet = new CharacterSheet(params)
 
         sheet.validate()
@@ -21,9 +22,9 @@ class CharacterSheetController {
             }
             flash.messageType = 'error'
         } else {
-            User user = springSecurityService.currentUser
 
-            render view: 'home', model: [userInstance: user]
         }
+
+        render view: 'create', model: [userInstance: user]
     }
 }

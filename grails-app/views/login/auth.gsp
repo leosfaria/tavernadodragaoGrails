@@ -31,13 +31,8 @@
     </div>
 </div>
 <!------------  End Menu ------------->
-<g:if test="${flash.messageType == 'error'}">
-    <div class="error">
-        <g:each in="${flash.message.split(';')}" var="messageCode">
-            <g:message code="${messageCode}" locale="pt_BR" /><br>
-        </g:each>
-    </div>
-</g:if>
+<g:render template="../systemMessage" />
+
 <div class="signUp">
     <g:form controller="user" action="save" enctype="multipart/form-data" class="form-horizontal">
         <fieldset>

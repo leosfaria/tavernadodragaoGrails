@@ -11,6 +11,7 @@ class CharacterSheet {
     static embedded = ['images']
 
     static constraints = {
-        images nullable: true
+        //images nullable: true
+        name unique: true
     }
 }

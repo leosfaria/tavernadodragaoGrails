@@ -17,5 +17,32 @@
     <div class="homeLeft">
         <g:render template="../user/avatar" model="[userInstance: userInstance, action: 'home']"/>
     </div>
+    <div class="homeMiddle">
+        <g:render template="../systemMessage" />
+
+        <g:form action="save" enctype="multipart/form-data" class="form-horizontal">
+            <fieldset>
+                <legend>Upload Character</legend>
+                <div class="form-group">
+                    <label for="name" class="col-lg-3 control-label">Name:</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Character Name" value="${characterInstance?.name}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="imageFile" class="col-lg-3 control-label">CharacterSheet:</label>
+                    <div class="col-lg-5">
+                        <input type="file" class="form-control" id="imageFile" name="imageFile" placeholder="Upload your photo" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-4">
+                        <input type="button" class="btn btn-default" value="Cancel" onclick="window.location='/tavernadodragaoGrails/';" />
+                        <g:submitButton name="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            </fieldset>
+        </g:form>
+    </div>
 </body>
 </html>

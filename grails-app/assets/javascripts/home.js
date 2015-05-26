@@ -32,7 +32,6 @@ $(function() {
             html.append("<a href='" + item.friendAdd + "' class='btn btn-primary btn-xs'>Add Friend</a>")
         } else if (item.friendAccept !== undefined) {
             html.append("<a href='" + item.friendAccept + "' class='btn btn-success btn-xs'>Accept</a>")
-            //html.append("<a href='" + item.friendDecline + "'>Decline</a>")
         } else if (item.friendRequestSent !== undefined) {
             html.append("<label>Request Sent</label>")
         }

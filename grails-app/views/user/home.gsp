@@ -14,13 +14,7 @@
         <g:render template="avatar" model="[userInstance: userInstance, action: 'edit']"/>
     </div>
     <div class="homeMiddle">
-        <g:if test="${flash.messageType != null}">
-            <div class="${flash.messageType}">
-                <g:each in="${flash.message.split(';')}" var="messageCode">
-                    <g:message code="${messageCode}" locale="pt_BR" /><br>
-                </g:each>
-            </div>
-        </g:if>
+        <g:render template="../systemMessage" />
         <label>Recent Activity</label>
     </div>
     <div class="homeRight">
