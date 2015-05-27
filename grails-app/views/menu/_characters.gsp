@@ -9,11 +9,10 @@
             </li>
             <li class="divider"></li>
         </g:if>
-        <li><a href="../cosmo/">Cosmo</a></li>
-        <li><a href="../cyborg/">Cyborg</a></li>
-        <li><a href="../lumen/">Lumen</a></li>
-        <li><a href="../sandstone/">Sandstone</a></li>
-        <li><a href="../superhero/">Superhero</a></li>
-        <li><a href="../yeti/">Yeti</a></li>
+        <g:each in="${userInstance.characterSheets}" var="characterSheet">
+            <li>
+                <g:link controller="characterSheet" action="edit" params="[characterId: characterSheet.id]">${characterSheet.name}</g:link>
+            </li>
+        </g:each>
     </ul>
 </li>

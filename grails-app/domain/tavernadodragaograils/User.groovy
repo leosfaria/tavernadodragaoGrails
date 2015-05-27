@@ -19,6 +19,7 @@ class User {
 
     List<User> friends = []
     List<User> friendRequests = []
+    List<CharacterSheet> characterSheets = []
 
     boolean enabled = true
     boolean accountExpired
@@ -33,9 +34,11 @@ class User {
         image nullable: true
         contentType nullable: true
         friends nullable: true
+        friendRequests nullable: true
+        characterSheets nullable: true
     }
 
-    static hasMany = [ friends: User, friendRequests: User ]
+    static hasMany = [ friends: User, friendRequests: User, characterSheets: CharacterSheet ]
 
     Set<Role> getAuthorities() {
         return  [Role.ROLE_USER]

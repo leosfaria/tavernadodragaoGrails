@@ -6,7 +6,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
                 <g:if test="${charactersheet}">
-                    <g:render template="../menu/characters" model="[newCharacter: newCharacter]" />
+                    <g:render template="../menu/characters" model="[userInstance: userInstance, newCharacter: newCharacter]" />
                 </g:if>
                 <g:if test="${search}">
                     <li class="homeMenuSearch">

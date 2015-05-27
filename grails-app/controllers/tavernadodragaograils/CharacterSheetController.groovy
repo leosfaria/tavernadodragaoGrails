@@ -20,11 +20,21 @@ class CharacterSheetController {
             setCharacterSheetImage(sheet)
             sheet.save(flush: true, failOnError: true)
 
-            flash.message = "tavernadodragaograils.CharacterSheet.save.success"
+            user.characterSheets << sheet
+            user.save(flush: true, failOnError: true)
+
+            flash.message = g.message(code: "tavernadodragaograils.CharacterSheet.save.success", args: [sheet.name])
             flash.messageType = "success"
         }
 
         render view: 'create', model: [userInstance: user]
+    }
+
+    def edit() {
+        User user = springSecurityService.currentUser
+        CharacterSheet sheet = CharacterSheet.findById(params.characterId)
+
+        render view: 'edit', model: [userInstance: user, characterInstance: sheet]
     }
 
     void setCharacterSheetImage(CharacterSheet sheet) {
