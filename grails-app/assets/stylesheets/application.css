@@ -51,7 +51,7 @@
     float: left;
 }
 
-.homeLeft img {
+.homeLeft img,.previewAvatar img  {
     width: 75px;
     height: 75px;
     border: 1px solid;

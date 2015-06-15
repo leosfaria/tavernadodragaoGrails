@@ -17,7 +17,8 @@
     <asset:javascript src="jquery-ui.min.js"/>
     <asset:javascript src="jquery.tokeninput.js"/>
     <asset:javascript src="bootstrap.min.js"/>
-    <asset:javascript src="menu.js"/>
+    <asset:javascript src="bootstrap.file-input.js"/>
+    <asset:javascript src="taverna.js"/>
     <g:layoutHead/>
 </head>
 <body>

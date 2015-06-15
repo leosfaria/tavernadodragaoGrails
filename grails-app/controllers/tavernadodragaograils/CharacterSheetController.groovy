@@ -17,7 +17,7 @@ class CharacterSheetController {
         CharacterSheet sheet = new CharacterSheet(params)
 
         if(isValidSheet(sheet)) {
-            setCharacterSheetImage(sheet)
+            setCharacterSheetImages(sheet)
             sheet.save(flush: true, failOnError: true)
 
             user.characterSheets << sheet
@@ -37,28 +37,32 @@ class CharacterSheetController {
         render view: 'edit', model: [userInstance: user, characterInstance: sheet]
     }
 
-    void setCharacterSheetImage(CharacterSheet sheet) {
-        CommonsMultipartFile file = request.getFile('imageFile')
+    void setCharacterSheetImages(CharacterSheet sheet) {
+        List<CommonsMultipartFile> files = request.getFiles('imageFile')
 
-        if(file.size > 10000000) {
-            flash.message = g.message(code: "tavernadodragaograils.CharacterSheet.image.size.error")
-            flash.messageType = 'error'
-            return
+        for (file in files) {
+            if(file.size > 10000000) {
+                flash.message = g.message(code: "tavernadodragaograils.CharacterSheet.image.size.error")
+                flash.messageType = 'error'
+                return
+            }
+
+            if(!file.contentType.contains("image")) {
+                flash.message = g.message(code: "tavernadodragaograils.User.image.format.error")
+                flash.messageType = 'error'
+                return
+            }
         }
 
-        if(!file.contentType.contains("image")) {
-            flash.message = g.message(code: "tavernadodragaograils.User.image.format.error")
-            flash.messageType = 'error'
-            return
+        files.each { file ->
+            CharacterImage image = new CharacterImage(image: file.bytes.encodeBase64().toString(), contentType: file.contentType)
+
+            if(sheet.images == null) {
+                sheet.images = []
+            }
+
+            sheet.images << image
         }
-
-        CharacterImage image = new CharacterImage(image: file.bytes.encodeBase64().toString(), contentType: file.contentType)
-
-        if(sheet.images == null) {
-            sheet.images = []
-        }
-
-        sheet.images << image
     }
 
     boolean isValidSheet(CharacterSheet sheet) {

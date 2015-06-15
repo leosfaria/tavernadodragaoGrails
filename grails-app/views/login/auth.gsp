@@ -39,8 +39,9 @@
             <legend>Sign Up</legend>
             <div class="form-group">
                 <label for="password" class="col-lg-3 control-label">Upload Photo:</label>
-                <div class="col-lg-5">
-                    <input type="file" class="form-control" id="imageFile" name="imageFile" placeholder="Upload your photo" value="">
+                <div class="col-lg-2 previewAvatar">
+                    <input type="file" class="form-control" title="Add File" id="imageFile" name="imageFile" placeholder="Upload your photo" value="">
+                    <img id="imagePreview" src="#" alt="your image" />
                 </div>
             </div>
             <div class="form-group">
@@ -76,5 +77,10 @@
         </fieldset>
     </g:form>
 </div>
+<!--script>
+    $(function () {
+        $('#fileupload').fileupload();
+    });
+</script-->
 </body>
 </html>

@@ -1,7 +1,6 @@
 /**
  * Created by Leonardo on 22/03/2015.
  */
-
 $(function() {
     $( "#search" ).autocomplete({
         source: function (request, response) {
