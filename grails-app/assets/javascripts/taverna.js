@@ -1,5 +1,6 @@
 function readURL(input) {
-    if (input.files && input.files[0]) {
+    console.log(input.files)
+    if (input.files && input.files.length > 0) {
         var reader = new FileReader();
 
         reader.onload = function (e) {

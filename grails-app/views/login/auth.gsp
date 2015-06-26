@@ -49,24 +49,28 @@
                 <div class="col-lg-5">
                     <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="${userInstance?.username}">
                 </div>
+                <span>*</span>
             </div>
             <div class="form-group">
                 <label for="email" class="col-lg-3 control-label">Email</label>
                 <div class="col-lg-5">
                     <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="${userInstance?.email}">
                 </div>
+                <span>*</span>
             </div>
             <div class="form-group">
                 <label for="password" class="col-lg-3 control-label">Password</label>
                 <div class="col-lg-5">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="${userInstance?.password}">
                 </div>
+                <span>*</span>
             </div>
             <div class="form-group">
                 <label for="confirmPassword" class="col-lg-3 control-label">Confirm Password</label>
                 <div class="col-lg-5">
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" value="${userInstance?.confirmPassword}">
                 </div>
+                <span>*</span>
             </div>
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-4">
@@ -76,6 +80,8 @@
             </div>
         </fieldset>
     </g:form>
+
+    <span>* Fields Required</span>
 </div>
 <!--script>
     $(function () {

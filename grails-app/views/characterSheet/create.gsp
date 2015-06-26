@@ -31,8 +31,9 @@
                 </div>
                 <div class="form-group">
                     <label for="imageFile" class="col-lg-3 control-label">CharacterSheet:</label>
-                    <div class="col-lg-5">
-                        <input type="file" class="form-control" id="imageFile" name="imageFile" placeholder="Upload your photo" value="" multiple>
+                    <div class="col-lg-2 previewImages">
+                        <input type="file" class="form-control" title="Add File" id="imageFile" name="imageFile" placeholder="Upload your photo" value="" multiple>
+                        <img id="imagePreview" src="#" alt="your image" />
                     </div>
                 </div>
                 <div class="form-group">
