@@ -1,13 +1,20 @@
 function readURL(input) {
-    console.log(input.files)
     if (input.files && input.files.length > 0) {
-        var reader = new FileReader();
+        for(var i = 0; i < input.files.length; i++) {
+            var reader = new FileReader();
 
-        reader.onload = function (e) {
-            $('#imagePreview').attr('src', e.target.result);
+            reader.onload = (function(i) {
+                return function (e) {
+                    var elem = $('#imagePreview').clone();
+
+                    elem.attr('id', 'imagePreview-' + i).attr('src', e.target.result).appendTo('.previewImages');
+
+                    $('#imagePreview-' + i).show();
+                }
+            })(i);
+
+            reader.readAsDataURL(input.files[i]);
         }
-
-        reader.readAsDataURL(input.files[0]);
     }
 }
 
@@ -21,8 +28,8 @@ $(function() {
         $('#imagePreview').hide();
 
         image.change(function(){
-            $('#imagePreview').show();
-            readURL(this); //imagePreview
+            $('img[id^=imagePreview-]').remove();
+            readURL(this); //imageFile
         });
     }
 
