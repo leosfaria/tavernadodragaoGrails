@@ -27,9 +27,12 @@
                 <legend>Edit Profile</legend>
                 <div class="form-group">
                     <label for="password" class="col-lg-3 control-label">Upload Photo:</label>
-                    <div class="col-lg-2 previewAvatar">
-                        <input type="file" class="form-control" title="Add File" id="imageFile" name="imageFile" placeholder="Upload your photo" value="">
-                        <img id="imagePreview" src="#" alt="your image" />
+                    <div class="col-lg-2">
+                        <input type="file" id="imageFile" name="imageFile" class="fileInputBtn">
+                        <a href="javascript:void(0);" class="btn btn-primary" id="imageAddBtn">Select File</a>
+                        <div id="imagePreview">
+                            <img id="image" src="#" alt="your image" class="previewAvatar" />
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">

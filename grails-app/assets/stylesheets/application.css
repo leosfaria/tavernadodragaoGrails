@@ -51,11 +51,23 @@
     float: left;
 }
 
-.homeLeft img,.previewAvatar img  {
+.homeLeft img,.previewAvatar {
     width: 75px;
     height: 75px;
     border: 1px solid;
     margin: 5px;
+}
+
+.previewImages {
+    height: 275px;
+    border: 1px solid;
+    margin: 5px;
+}
+
+.fileInputBtn {
+    position: absolute;
+    top: -1000px;
+    left: -1000px;
 }
 
 .homeLeft label {

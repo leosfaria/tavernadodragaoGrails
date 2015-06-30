@@ -7,9 +7,12 @@ function readURL(input) {
                 return function (e) {
                     var elem = $('#imagePreview').clone();
 
-                    elem.attr('id', 'imagePreview-' + i).attr('src', e.target.result).appendTo('.previewImages');
+                    elem.attr('id', 'imagePreview-' + i).find('img').attr('src', e.target.result);
+                    elem.append('<span>' + input.files[i].name + '</span>');
+                    $('#imagePreview').parent().append(elem);
 
-                    $('#imagePreview-' + i).show();
+                    //$('#imagePreview-' + i).show();
+                    $('#imagePreview-' + i).css('display', 'inline-block');
                 }
             })(i);
 
@@ -22,13 +25,15 @@ $(function() {
     var image = $("#imageFile");
     var menuChar = $('#menuCharacters');
 
-    $('input[type=file]').bootstrapFileInput();
+    $('#imageAddBtn').click(function (e) {
+        $('#imageFile').click();
+    });
 
     if(image !== undefined) {
         $('#imagePreview').hide();
 
         image.change(function(){
-            $('img[id^=imagePreview-]').remove();
+            $('div[id^=imagePreview-]').remove();
             readURL(this); //imageFile
         });
     }

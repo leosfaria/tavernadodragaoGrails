@@ -31,9 +31,12 @@
                 </div>
                 <div class="form-group">
                     <label for="imageFile" class="col-lg-3 control-label">CharacterSheet:</label>
-                    <div class="col-lg-2 previewImages">
-                        <input type="file" class="form-control" title="Add File" id="imageFile" name="imageFile" placeholder="Upload your photo" value="" multiple>
-                        <img id="imagePreview" src="#" alt="your image" />
+                    <div class="col-lg-2">
+                        <input type="file" id="imageFile" name="imageFile" multiple class="fileInputBtn">
+                        <a href="javascript:void(0);" class="btn btn-primary" id="imageAddBtn">Add File</a>
+                        <div id="imagePreview">
+                            <img id="image" src="#" alt="your image" class="previewImages" />
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
