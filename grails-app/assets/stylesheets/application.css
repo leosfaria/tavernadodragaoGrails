@@ -27,7 +27,16 @@
 .login .submitButton {
     margin-left: 20px;
 }
-
+#imageAddBtn{
+    display: inline-block;
+}
+.imagePreview {
+    display: inline-block;
+    float: left;
+}
+.imagePreview img {
+    margin: 0 5px;
+}
 /*----------- Home Page --------------- */
 .error {
     /*color: #ff0000;*/
@@ -59,7 +68,7 @@
 }
 
 .previewImages {
-    height: 275px;
+    height: 75px;
     border: 1px solid;
     margin: 5px;
 }

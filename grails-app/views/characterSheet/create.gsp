@@ -35,7 +35,9 @@
                         <input type="file" id="imageFile" name="imageFile" multiple class="fileInputBtn">
                         <a href="javascript:void(0);" class="btn btn-primary" id="imageAddBtn">Add File</a>
                         <div id="imagePreview">
-                            <img id="image" src="#" alt="your image" class="previewImages" />
+                            <a rel="fancybox-thumb" href="#">
+                                <img id="image" src="#" alt="your image" class="previewImages" />
+                            </a>
                         </div>
                     </div>
                 </div>

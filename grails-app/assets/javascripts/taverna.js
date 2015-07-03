@@ -1,4 +1,6 @@
 function readURL(input) {
+    console.log(input.files[0].type.indexOf('image') >= 0);
+
     if (input.files && input.files.length > 0) {
         for(var i = 0; i < input.files.length; i++) {
             var reader = new FileReader();
@@ -7,17 +9,31 @@ function readURL(input) {
                 return function (e) {
                     var elem = $('#imagePreview').clone();
 
-                    elem.attr('id', 'imagePreview-' + i).find('img').attr('src', e.target.result);
-                    elem.append('<span>' + input.files[i].name + '</span>');
-                    $('#imagePreview').parent().append(elem);
+                    elem.attr('id', 'imagePreview-' + i);
+                    elem.find('img').attr('src', e.target.result);
+                    elem.find('a').attr('href', e.target.result).attr('title', input.files[i].name).addClass('fancybox-thumb');
+                    $('#imagePreview').parent().parent().append(elem);
 
-                    //$('#imagePreview-' + i).show();
                     $('#imagePreview-' + i).css('display', 'inline-block');
                 }
             })(i);
 
             reader.readAsDataURL(input.files[i]);
         }
+
+        $(".fancybox-thumb").fancybox({
+            prevEffect	: 'none',
+            nextEffect	: 'none',
+            helpers	: {
+                title	: {
+                    type: 'outside'
+                },
+                thumbs	: {
+                    width	: 50,
+                    height	: 50
+                }
+            }
+        });
     }
 }
 

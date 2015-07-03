@@ -13,11 +13,18 @@
     <asset:stylesheet src="bootstrap.min.css"/>
     <asset:stylesheet src="tokeninput.css"/>
     <asset:stylesheet src="jquery-ui.min.css"/>
+    <asset:stylesheet src="jquery.fancybox.css"/>
+    <asset:stylesheet src="jquery.fancybox-buttons.css"/>
+    <asset:stylesheet src="jquery.fancybox-thumbs.css"/>
     <asset:javascript src="jquery-2.1.3.min.js"/>
     <asset:javascript src="jquery-ui.min.js"/>
     <asset:javascript src="jquery.tokeninput.js"/>
     <asset:javascript src="bootstrap.min.js"/>
     <asset:javascript src="bootstrap.file-input.js"/>
+    <asset:javascript src="jquery.fancybox.pack.js"/>
+    <asset:javascript src="jquery.fancybox-buttons.js"/>
+    <asset:javascript src="jquery.fancybox-media.js"/>
+    <asset:javascript src="jquery.fancybox-thumbs.js"/>
     <asset:javascript src="taverna.js"/>
     <g:layoutHead/>
 </head>
