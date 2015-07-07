@@ -1,7 +1,22 @@
-function readURL(input) {
-    console.log(input.files[0].type.indexOf('image') >= 0);
+function isEveryFileAValidFormat(files) {
+    for(var i = 0; i < files.length; i++) {
+        if (files[i].type.indexOf('image') < 0) {
+            return false;
+        }
+    }
 
+    return true
+}
+
+function readURL(input) {
     if (input.files && input.files.length > 0) {
+        if(!isEveryFileAValidFormat(input.files)) {
+            $('#formatError').show();
+            return;
+        }
+
+        $('#formatError').hide();
+
         for(var i = 0; i < input.files.length; i++) {
             var reader = new FileReader();
 
@@ -12,7 +27,12 @@ function readURL(input) {
                     elem.attr('id', 'imagePreview-' + i);
                     elem.find('img').attr('src', e.target.result);
                     elem.find('a').attr('href', e.target.result).attr('title', input.files[i].name).addClass('fancybox-thumb');
-                    $('#imagePreview').parent().parent().append(elem);
+
+                    if($('#imagePreviewBox').size() != 0) {
+                        $('#imagePreviewBox').append(elem)
+                    } else {
+                        $('#imagePreview').parent().append(elem);
+                    }
 
                     $('#imagePreview-' + i).css('display', 'inline-block');
                 }

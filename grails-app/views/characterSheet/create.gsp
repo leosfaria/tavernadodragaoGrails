@@ -31,9 +31,12 @@
                 </div>
                 <div class="form-group">
                     <label for="imageFile" class="col-lg-3 control-label">CharacterSheet:</label>
-                    <div class="col-lg-2">
+                    <div class="col-lg-5">
                         <input type="file" id="imageFile" name="imageFile" multiple class="fileInputBtn">
                         <a href="javascript:void(0);" class="btn btn-primary" id="imageAddBtn">Add File</a>
+                        <div id="formatError" style="display: none;">
+                            <span style="color: #ff0000">* Formato inválido</span>
+                        </div>
                         <div id="imagePreview">
                             <a rel="fancybox-thumb" href="#">
                                 <img id="image" src="#" alt="your image" class="previewImages" />
@@ -41,6 +44,7 @@
                         </div>
                     </div>
                 </div>
+                <div id="imagePreviewBox"></div>
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-4">
                         <input type="button" class="btn btn-default" value="Cancel" onclick="window.location='/tavernadodragaoGrails/';" />

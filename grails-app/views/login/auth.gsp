@@ -42,6 +42,9 @@
                 <div class="col-lg-5">
                     <input type="file" id="imageFile" name="imageFile" class="fileInputBtn">
                     <a href="javascript:void(0);" class="btn btn-primary" id="imageAddBtn">Select File</a>
+                    <div id="formatError" style="display: none;">
+                        <span style="color: #ff0000">* Formato inválido</span>
+                    </div>
                     <div id="imagePreview" class="imagePreview">
                         <img id="image" src="#" alt="your image" class="previewAvatar" />
                     </div>
