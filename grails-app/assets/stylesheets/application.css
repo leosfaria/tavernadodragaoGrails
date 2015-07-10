@@ -10,6 +10,11 @@
 *= require_self
 */
 
+/*header*/
+ul.nav.navbar-nav.logout {
+    float: right;
+}
+
 /*----------- Login Page --------------- */
 .login, .signUp {
     width: 50%;
@@ -158,6 +163,11 @@ span.user-name {
 }
 .news li:first-child {
     border-top: 1px solid #000important;
+}
+
+/*create*/
+#imagePreviewBox {
+    margin-left: 205px;
 }
 
 

@@ -6,6 +6,8 @@ class CharacterSheet {
 
     String name
 
+    String sheet
+
     List<CharacterImage> images = []
 
     static embedded = ['images']

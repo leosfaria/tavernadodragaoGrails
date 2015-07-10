@@ -14,16 +14,16 @@ class CharacterSheetController {
 
     def save() {
         User user = springSecurityService.currentUser
-        CharacterSheet sheet = new CharacterSheet(params)
+        CharacterSheet characterSheet = new CharacterSheet(params)
 
-        if(isValidSheet(sheet)) {
-            setCharacterSheetImages(sheet)
-            sheet.save(flush: true, failOnError: true)
+        if(isValidSheet(characterSheet)) {
+            setCharacterSheetImages(characterSheet)
+            characterSheet.save(flush: true, failOnError: true)
 
-            user.characterSheets << sheet
+            user.characterSheets << characterSheet
             user.save(flush: true, failOnError: true)
 
-            flash.message = g.message(code: "tavernadodragaograils.CharacterSheet.save.success", args: [sheet.name])
+            flash.message = g.message(code: "tavernadodragaograils.CharacterSheet.save.success", args: [characterSheet.name])
             flash.messageType = "success"
         }
 

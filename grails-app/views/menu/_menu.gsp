@@ -16,6 +16,9 @@
                 <g:if test="${news}">
                     <g:render template="../menu/news" model="[userInstance: userInstance]" />
                 </g:if>
+
+            </ul>
+            <ul class="nav navbar-nav logout">
                 <li>
                     <g:link controller='logout'>Logout</g:link>
                 </li>

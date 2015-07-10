@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="imageFile" class="col-lg-3 control-label">CharacterSheet:</label>
+                    <label for="imageFile" class="col-lg-3 control-label">Character Image:</label>
                     <div class="col-lg-5">
                         <input type="file" id="imageFile" name="imageFile" multiple class="fileInputBtn">
                         <a href="javascript:void(0);" class="btn btn-primary" id="imageAddBtn">Add File</a>
@@ -46,7 +46,13 @@
                 </div>
                 <div id="imagePreviewBox"></div>
                 <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-4">
+                    <label for="sheet" class="col-lg-3 control-label">CharacterSheet:</label>
+                    <div class="col-lg-5">
+                        <g:textArea name="sheet" rows="30" cols="80" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6 col-lg-offset-3">
                         <input type="button" class="btn btn-default" value="Cancel" onclick="window.location='/tavernadodragaoGrails/';" />
                         <g:submitButton name="submit" value="Save" class="btn btn-primary" />
                     </div>
